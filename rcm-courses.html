@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化钢琴课程 | 1对1专属教学方案</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        purple: '#9333ea', // 主紫色
+                        lightPurple: '#f0e6ff', // 淡紫色
+                        purpleAccent: '#b894e6', // 与紫色搭配的浅紫色（按钮新颜色）
+                        // 金色系列
+                        gold: {
+                            light: '#FFD700', // 亮金色
+                            DEFAULT: '#D4AF37', // 标准金色（古铜金）
+                            dark: '#B8860B' // 深金色
+                        },
+                        // 金紫色系列
+                        goldPurple: {
+                            light: '#E6C5FF', // 浅金紫（带金色光泽的淡紫）
+                            DEFAULT: '#C897E8', // 标准金紫（紫中带暖金调）
+                            dark: '#A267CC', // 深金紫（浓郁紫+暗金质感）
+                            accent: '#D4B2FF' // 金紫高光（更亮的光泽感）
+                        },
+                        neutral: '#F5F7FA',
+                        dark: '#1D2129',
+                    },
+                    fontFamily: {
+                        sans: ['SimHei', '黑体', 'sans-serif'], // 黑体
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .btn-primary {
+                @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-primary/90 transition-all duration-300 font-medium;
+            }
+            .btn-purple {
+                @apply bg-purpleAccent text-white px-8 py-4 rounded-md hover:bg-purpleAccent/90 transition-all duration-300 font-medium text-lg;
+            }
+            .btn-secondary {
+                @apply bg-white border-2 border-primary text-primary px-6 py-3 rounded-md hover:bg-primary/5 transition-all duration-300 font-medium;
+            }
+            .nav-link {
+                @apply text-lg font-bold  hover:text-gold transition-colors duration-300;
+            }
+            .question-container {
+                @apply min-h-[400px] flex flex-col justify-center items-center;
+            }
+            .fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+            }
+        }
+    </style>
+  </head>
+  <body class="bg-white text-dark font-sans">
+  <!-- 导航栏 - 菜单靠左并紧贴Logo -->
+  <header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center">
+                <!-- Logo（优化为本地图片引用） -->
+                <div class="flex items-center mr-4">
+                    <!-- 建议：将你的logo图片命名为"lucy-piano-logo.png"，放在网站根目录 -->
+                    <!-- 若图片在images文件夹，路径改为"images/lucy-piano-logo.png" -->
+                    <img src="../images/lucy-piano-logo.png"
+                         alt="Lucy Piano Logo"
+                         class="h-28 w-auto rounded-full object-cover"
+                         onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
+                    <!-- 上面的onerror是备用链接，防止本地图片加载失败 -->
+                </div>
+
+              <!-- 菜单（改为新页面打开） -->
+              <nav class="hidden md:flex items-center space-x-6 flex-1">
+                  <a href="index.html" target="_blank" class="nav-link">成人钢琴课</a>
+                  <a href="about.html" target="_blank" class="nav-link">关于我们</a>
+                  <a href="contact.html" target="_blank" class="nav-link">联系老师</a>
+                  <a href="free-courses.html" target="_blank" class="nav-link">免费课程</a>
+                  <a href="rcm-courses.html" target="_blank" class="nav-link">RCM课程</a>
+                  <a href="student.html" target="_blank" class="nav-link">学生作品</a>
+                  <a href="music-share.html" target="_blank" class="nav-link">音乐分享</a>
+              </nav>
+
+              <!-- 移动端菜单按钮 -->
+              <button id="mobile-menu-button" class="md:hidden text-dark text-2xl focus:outline-none ml-auto">
+                  <i class="fa fa-bars"></i>
+              </button>
+          </div>
+
+          <!-- 移动端菜单（同步改为新页面打开） -->
+          <div id="mobile-menu" class="md:hidden hidden pb-6">
+              <div class="flex flex-col space-y-4">
+                  <a href="index.html" target="_blank" class="nav-link py-2">成人钢琴课</a>
+                  <a href="about.html" target="_blank" class="nav-link py-2">关于我们</a>
+                  <a href="contact.html" target="_blank" class="nav-link py-2">联系老师</a>
+                  <a href="free-courses.html" target="_blank" class="nav-link py-2">免费课程</a>
+                  <a href="rcm-courses.html" target="_blank" class="nav-link py-2">RCM课程</a>
+                      <a href="student.html" target="_blank" class="nav-link py-2">学生作品</a>
+                  <a href="music-share.html" target="_blank" class="nav-link py-2">音乐分享</a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+
+  <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* 降低层级，确保在内容下方 */
+        pointer-events: none;
+        overflow: hidden;
+    ">
+        <!-- 主水印 -->
+        <img
+            src="../images/watermark-big.png"
+            alt="钢琴水印"
+            style="
+                position: absolute;
+                left: 50%;
+                bottom: 10%; /* 底部10%位置 */
+                transform: translateX(-50%);
+                max-width: 60%; /* 最大宽度为屏幕60% */
+                height: auto;
+                opacity: 0.25; /* 降低透明度 */
+            "
+        >
+
+
+    </div>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <!-- 页面标题 -->
+        <div class="text-center mb-10 md:mb-16 fade-in">
+            <h1 class="text-3xl md:text-3xl font-bold mb-4 text-purple">个性化钢琴课程</h1>
+            <p class="text-xl text-gray-600 mb-6">1对1专属教学方案 （线下课或线上实时课）</p>
+            <div class="max-w-3xl mx-auto text-gray-700 leading-relaxed">
+                <p>采用一对一授课模式，根据每位学生的年龄、基础、学习目标量身定制教学计划，注重因材施教，在培养扎实演奏技巧的同时，全面提升音乐理解力、表现力和艺术素养。</p>
+            </div>
+        </div>
+
+        <!-- 课程特色 -->
+        <section class="max-w-5xl mx-auto mb-16 fade-in">
+            <div class="flex items-center justify-center mb-8">
+                <i class="fa fa-book text-3xl text-gold mr-3"></i>
+                <h2 class="text-2xl md:text-2xl font-bold black">课程特色</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover border-t-4 border-purple">
+                    <div class="text-gold text-2xl mb-4">✔</div>
+                    <h3 class="text-lg font-semibold mb-2 text-purple">个性化教学</h3>
+                    <p class="text-gray-600">针对不同学习阶段调整进度与内容</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover border-t-4 border-gold">
+                    <div class="text-purple text-2xl mb-4">✔</div>
+                    <h3 class="text-lg font-semibold mb-2 text-gold">综合音乐训练</h3>
+                    <p class="text-gray-600">融合演奏技巧、乐理、视唱练耳</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover border-t-4 border-purple">
+                    <div class="text-gold text-2xl mb-4">✔</div>
+                    <h3 class="text-lg font-semibold mb-2 text-purple">科学进阶体系</h3>
+                    <p class="text-gray-600">从基础到高阶，系统提升演奏能力</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 card-hover border-t-4 border-gold">
+                    <div class="text-purple text-2xl mb-4">✔</div>
+                    <h3 class="text-lg font-semibold mb-2 text-gold">音乐表现力培养</h3>
+                    <p class="text-gray-600">注重音色控制、情感表达与舞台表现</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分阶段教学 -->
+        <section class="max-w-5xl mx-auto mb-16 fade-in">
+            <div class="flex items-center justify-center mb-8">
+                <i class="fa fa-music text-3xl text-gold mr-3"></i>
+                <h2 class="text-2xl md:text-2xl font-bold text-black">分阶段教学</h2>
+            </div>
+
+            <div class="space-y-8">
+                <!-- 初级阶段 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="bg-purple text-white p-4 md:p-5">
+                        <h3 class="text-xl md:text-2xl font-semibold flex items-center">
+                            <span class="mr-3">🎵</span> 初级阶段（零基础/入门）
+                        </h3>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>掌握正确坐姿、手型与触键方法，建立良好演奏习惯</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>学习五线谱识读、基础节奏训练，培养音乐感知能力</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>练习简易乐曲，提升手指独立性与协调性</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 中级阶段 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="bg-gold text-white p-4 md:p-5">
+                        <h3 class="text-xl md:text-2xl font-semibold flex items-center">
+                            <span class="mr-3">🎶</span> 中级阶段（具备基础）
+                        </h3>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-purple mt-1 mr-3"></i>
+                                <span>强化手指技巧（音阶、琶音、装饰音等）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-purple mt-1 mr-3"></i>
+                                <span>提升乐理应用能力（调式、和声分析、曲式结构）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-purple mt-1 mr-3"></i>
+                                <span>训练音乐表现力，学会处理乐句、音色层次与情感表达</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 高级阶段 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="bg-purple text-white p-4 md:p-5">
+                        <h3 class="text-xl md:text-2xl font-semibold flex items-center">
+                            <span class="mr-3">🎻</span> 高级阶段（进阶提升）
+                        </h3>
+                    </div>
+                    <div class="p-5 md:p-6">
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>深入学习不同音乐风格（巴洛克、古典、浪漫、现代等）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>提升复杂曲目演奏能力，精准控制音色与动态</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                                <span>为考试、比赛、演出做准备，优化舞台表现力与心理素质</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心课程模块 -->
+        <section class="max-w-5xl mx-auto mb-16 fade-in">
+            <div class="flex items-center justify-center mb-8">
+                <i class="fa fa-list-alt text-3xl text-gold mr-3"></i>
+                <h2 class="text-2xl md:text-2xl font-bold text-black">核心课程模块</h2>
+            </div>
+
+            <div class="bg-gold/10 border-l-4 border-gold p-4 md:p-5 rounded-r-lg mb-8">
+                <p class="text-gray-700 italic">（参加加拿大皇家音乐学院（RCM）考级的，根据考纲做安排）</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 模块1 -->
+                <div class="bg-white rounded-lg shadow-md p-5 card-hover border-l-4 border-gold">
+                    <h3 class="text-lg font-semibold mb-3 text-gold">1. 手指基本功技巧练习</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-gold mt-1 mr-2"></i>
+                            <span>手指独立练习</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-gold mt-1 mr-2"></i>
+                            <span>根据级别系统练习各种大小调的音阶琶音和弦</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 模块2 -->
+                <div class="bg-white rounded-lg shadow-md p-5 card-hover border-l-4 border-gold">
+                    <h3 class="text-lg font-semibold mb-3 text-gold">2. 钢琴演奏技巧</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>系统训练触键、指法、踏板运用</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>学习不同时期作品（巴赫、莫扎特、肖邦、德彪西等）</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 模块3 -->
+                <div class="bg-white rounded-lg shadow-md p-5 card-hover border-l-4 border-gold">
+                    <h3 class="text-lg font-semibold mb-3 text-gold">3. 视唱练耳训练</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-gold mt-1 mr-2"></i>
+                            <span>训练音程、节奏、旋律、和弦听辨能力</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-gold mt-1 mr-2"></i>
+                            <span>训练音乐记忆力</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 模块4 -->
+                <div class="bg-white rounded-lg shadow-md p-5 card-hover border-l-4 border-gold">
+                    <h3 class="text-lg font-semibold mb-3 text-gold">4. 视奏训练</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>通过科学系统的分级训练，快速提升读谱速度和即时演奏能力</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>结合多种音乐读谱分析方法，培养准确理解和表达乐谱信息的能力</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <!-- 模块5 -->
+                <div class="bg-white rounded-lg shadow-md p-5 card-hover border-l-4 border-gold">
+                    <h3 class="text-lg font-semibold mb-3 text-gold">5. RCM乐理课程</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>根据RCM考纲，系统学习音高、音程、节拍、调式、和声，音乐术语等基本音乐理论</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-angle-right text-purple mt-1 mr-2"></i>
+                            <span>增加对音乐的学习与分析能力，助力考级与自主学琴</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 课程目标 -->
+        <section class="max-w-5xl mx-auto mb-16 fade-in">
+            <div class="flex items-center justify-center mb-8">
+                <i class="fa fa-bullseye text-3xl text-gold mr-3"></i>
+                <h2 class="text-2xl md:text-3xl font-bold text-black">课程目标</h2>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8 card-hover">
+                <ul class="space-y-4 text-gray-700">
+                    <li class="flex items-start">
+                        <i class="fa fa-circle text-xs text-purple mt-1.5 mr-3"></i>
+                        <span>建立扎实的演奏技巧，具备独立学习能力</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-circle text-xs text-gold mt-1.5 mr-3"></i>
+                        <span>培养敏锐的音乐感知力，提升表现力与艺术修养</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-circle text-xs text-purple mt-1.5 mr-3"></i>
+                        <span>适应考试、比赛、演出等专业需求，实现长期音乐发展</span>
+                    </li>
+                </ul>
+
+                <div class="mt-8 p-5 bg-purple/5 rounded-lg border border-purple/10">
+                    <p class="text-gray-800 text-lg italic flex items-center">
+                        <i class="fa fa-music text-gold mr-3 text-xl"></i>
+                        无论你是零基础入门，还是希望精进演奏技巧，我们都能为你定制最适合的学习路径！
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 咨询入口 -->
+        <section class="max-w-3xl mx-auto text-center mb-16 fade-in">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-purple">开启你的钢琴进阶之旅</h2>
+            <p class="text-gray-700 mb-8">
+                欢迎咨询课程详情，我们将为你提供个性化的学习建议
+            </p>
+            <a href="#" class="btn-purple inline-flex items-center">
+                <i class="fa fa-envelope-o mr-2"></i>立即咨询
+            </a>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white py-10 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-8">
+                <div class="flex items-center">
+                    <i class="fa fa-envelope text-purple mr-3 text-xl"></i>
+                    <span>EMAIL：lucymusic.piano@gmail.com</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa fa-weixin text-purple mr-3 text-xl"></i>
+                    <span>WECHAT：Lucy-Piano </span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa fa-youtube-play text-purple mr-3 text-xl"></i>
+                    <a href="#" class="text-purple hover:underline">YOUTUBE CHANNEL</a>
+                </div>
+            </div>
+
+            <div class="text-center text-gray-600">
+                <p>lucy-piano© 2025. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 滚动时的渐入动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有section元素
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
