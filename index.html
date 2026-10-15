@@ -147,20 +147,26 @@
           "
       >
   </div>
-    <!-- 主内容区 YouTube背景视频 -->
+      <!-- 主内容区 -->
     <section class="py-10 bg-neutral relative overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="w-full max-w-5xl mx-auto aspect-video overflow-hidden relative" style="min-height: 420px;">
-               <div id="yt-bg-wrap" class="absolute inset-0" style="filter: brightness(0.65) contrast(0.75) saturate(0.7);">
-    <iframe id="yt-player"
-        class="absolute inset-0 w-full h-full object-cover"
-        src="https://www.youtube.com/embed/lpB5GsI5YqA?autoplay=1&mute=1&loop=1&playlist=lpB5GsI5YqA&controls=0&modestbranding=1&rel=0&enablejsapi=1"
-        frameborder="0" allow="autoplay" allowfullscreen>
-    </iframe>
-</div>
+            <div class="max-w-3xl mx-auto aspect-video overflow-hidden relative">
+                <video
+                    id="main-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="w-full h-full object-cover opacity-30"  <!-- 淡化加深：从30%→25%透明度 -->
+                    style="filter: brightness(0.6) contrast(0.7) saturate(0.6);"  <!-- 滤镜效果加强 -->
+                >
+                    <source src="../videos/cover.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+
                 <button
                     id="sound-toggle"
-                    class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all z-10"
+                    class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all"
                     aria-label="切换声音"
                 >
                     <i class="fa fa-volume-off text-white text-lg"></i>
@@ -168,40 +174,32 @@
             </div>
         </div>
     </section>
-    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
-        let player;
-        let isMuted = true;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('yt-player', {
-                events: {
-                    'onReady': onPlayerReady
+        // 视频声音处理
+        window.addEventListener('load', function() {
+            const video = document.getElementById('main-video');
+            const toggleBtn = document.getElementById('sound-toggle');
+            let isMuted = true;
+
+            video.play().catch(() => {
+                video.addEventListener('click', () => video.play(), { once: true });
+            });
+
+            toggleBtn.addEventListener('click', function() {
+                isMuted = !isMuted;
+                if (isMuted) {
+                    toggleBtn.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
+                    video.muted = true;
+                    video.volume = 0;
+                } else {
+                    toggleBtn.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
+                    video.muted = false;
+                    video.volume = 1;
                 }
             });
-        }
-        function onPlayerReady(event) {
-            event.target.mute();
-            event.target.playVideo();
-        }
-        document.getElementById('sound-toggle').addEventListener('click', function(){
-            isMuted = !isMuted;
-            if(isMuted){
-                player.mute();
-                this.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
-            }else{
-                player.unMute();
-                this.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
-            }
-        });
-        // 页面隐藏时暂停，切回页面播放（适配YouTube player）
-        document.addEventListener('visibilitychange', () => {
-            if (player && player.pauseVideo) {
-                if (document.hidden) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
-            }
         });
     </script>
         <!-- 问卷按钮【已替换成我们新的表单按钮】 -->
