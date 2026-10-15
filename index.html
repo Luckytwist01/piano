@@ -87,7 +87,7 @@
               <div class="flex items-center mr-4">
                   <!-- 建议：将你的logo图片命名为"lucy-piano-logo.png"，放在网站根目录 -->
                   <!-- 若图片在images文件夹，路径改为"images/lucy-piano-logo.png" -->
-                  <img src="../images/lucy-piano-logo.png"
+                  <img src="/images/lucy-piano-logo.png"
                        alt="Lucy Piano Logo"
                        class="h-28 w-auto rounded-full object-cover"
                        onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
@@ -134,7 +134,7 @@
   ">
       <!-- 主水印 -->
       <img
-          src="../images/watermark-big.png"
+          src="/images/watermark-big.png"
           alt="钢琴水印"
           style="
               position: absolute;
@@ -150,13 +150,14 @@
     <!-- 主内容区 YouTube背景视频 -->
     <section class="py-10 bg-neutral relative overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto aspect-video overflow-hidden relative">
-                <div id="yt-bg-wrap" class="absolute inset-0 opacity-30" style="filter: brightness(0.6) contrast(0.7) saturate(0.6);">
-                    <iframe id="yt-player" class="w-[300%] h-[300%] -ml-[100%] -mt-[100%]"
-                        src="https://www.youtube.com/embed/lpB5GsI5YqA?autoplay=1&mute=1&loop=1&playlist=lpB5GsI5YqA&controls=0&modestbranding=1&rel=0&enablejsapi=1"
-                        frameborder="0" allow="autoplay" allowfullscreen>
-                    </iframe>
-                </div>
+            <div class="w-full max-w-5xl mx-auto aspect-video overflow-hidden relative" style="min-height: 420px;">
+               <div id="yt-bg-wrap" class="absolute inset-0" style="filter: brightness(0.65) contrast(0.75) saturate(0.7);">
+    <iframe id="yt-player"
+        class="absolute inset-0 w-full h-full object-cover"
+        src="https://www.youtube.com/embed/lpB5GsI5YqA?autoplay=1&mute=1&loop=1&playlist=lpB5GsI5YqA&controls=0&modestbranding=1&rel=0&enablejsapi=1"
+        frameborder="0" allow="autoplay" allowfullscreen>
+    </iframe>
+</div>
                 <button
                     id="sound-toggle"
                     class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all z-10"
@@ -400,7 +401,7 @@
   function drawFooterWatermark() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const logo = new Image();
-      logo.src = '../images/watermark-big.png';
+      logo.src = '/images/watermark-big.png';
       // 加载失败时使用备用图
       logo.onerror = function() {
           logo.src = 'https://picsum.photos/id/237/100/60';
