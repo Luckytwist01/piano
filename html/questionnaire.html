@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定制你的钢琴学习方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        purple: '#9333ea',
+                        lightPurple: '#f0e6ff',
+                        neutral: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['SimHei', '黑体', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .btn-primary {
+                @apply bg-purple text-white px-6 py-3 rounded-md hover:bg-purple/90 transition-all duration-300 font-medium;
+            }
+            .btn-secondary {
+                @apply bg-white border-2 border-purple text-purple px-6 py-3 rounded-md hover:bg-purple/5 transition-all duration-300 font-medium;
+            }
+            .btn-selected {
+                @apply bg-purple/10 border-purple text-purple/80 cursor-not-allowed;
+            }
+            .fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .error-text {
+                @apply text-red-500 text-sm mt-1 hidden;
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral min-h-screen py-10">
+    <div class="container mx-auto px-4 max-w-3xl">
+        <h2 class="font-bold text-[clamp(1.8rem,3vw,2.5rem)] text-center mb-4">定制你的钢琴学习方案</h2>
+        <div class="w-20 h-1 bg-purple mx-auto my-8"></div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-10">
+            <!-- 进度条 -->
+            <div class="mb-10">
+                <div class="flex justify-between text-sm mb-2">
+                    <span>完成进度</span>
+                    <span id="progress-text">1/7</span>
+                </div>
+                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-purple rounded-full transition-all duration-300" style="width: 14.3%"></div>
+                </div>
+            </div>
+
+            <!-- 问题容器 -->
+            <div id="questions-container" class="min-h-[400px] flex flex-col justify-center items-center">
+                <!-- 问题1 -->
+                <div class="question fade-in" data-question="1">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">请问怎么称呼？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-md mb-1 focus:outline-none focus:ring-2 focus:ring-purple transition-all" placeholder="请输入您的称呼">
+                        <p class="error-text" id="name-error">请输入您的称呼</p>
+                        <button class="next-btn btn-primary w-full mt-5">OK</button>
+                    </div>
+                </div>
+
+                <!-- 问题2 -->
+                <div class="question hidden" data-question="2">
+                  <div class="w-full max-w-md">
+                      <div class="flex justify-between items-start mb-6">
+                          <h3 class="font-bold text-xl">请问你家里有琴吗？（钢琴，电钢，电子琴都可以）</h3>
+                          <span class="text-red-500 text-sm">This question is required</span>
+                      </div>
+                      <div class="grid grid-cols-2 gap-4 mb-6">
+                          <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="有">有</button>
+                          <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="没有">没有</button>
+                      </div>
+                      <button class="next-btn btn-primary w-full hidden">下一步</button>
+                  </div>
+              </div>
+
+                <!-- 问题3 -->
+                <div class="question hidden" data-question="3">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">请问你的年龄段？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="20-30">20-30</button>
+                            <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="30-50">30-50</button>
+                            <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="50以上">50以上</button>
+                            <button class="answer-btn btn-secondary hover:bg-purple/5" data-value="70以上">70以上</button>
+                        </div>
+                        <button class="next-btn btn-primary w-full hidden">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 问题4 -->
+                <div class="question hidden" data-question="4">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">请问你的钢琴水平？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="A零基础">A 零基础</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="B会弹一点，但是不熟练">B 会弹一点，但是不熟练</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="C可以弹简单乐曲">C 可以弹简单乐曲</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="D以前学过但忘了基本功想重新开始">D 以前学过但忘了基本功想重新开始</button>
+                        </div>
+                        <button class="next-btn btn-primary w-full hidden">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 问题5 -->
+                <div class="question hidden" data-question="5">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">请问你的邮箱地址？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">我们会尊重隐私</p>
+                        <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md mb-1 focus:outline-none focus:ring-2 focus:ring-purple transition-all" placeholder="请输入您的邮箱地址">
+                        <p class="error-text" id="email-error">请输入有效的邮箱地址</p>
+                        <button class="next-btn btn-primary w-full mt-5">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 问题6 -->
+                <div class="question hidden" data-question="6">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">你学琴的愿望是什么？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="A会自己识谱，能正确流畅地弹出来而且动听。">A 会自己识谱，能正确流畅地弹出来而且动听。</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="B能弹一些自己喜欢的乐曲。">B 能弹一些自己喜欢的乐曲。</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="C没有明确目的，就是想学一个爱好。">C 没有明确目的，就是想学一个爱好。</button>
+                        </div>
+                        <button class="next-btn btn-primary w-full hidden">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 问题7 -->
+                <div class="question hidden" data-question="7">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">如果你学过钢琴，遇到的最大问题是什么？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="A不识五线谱">A 不识五线谱</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="B识谱太慢">B 识谱太慢</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="C不知道自己弹的对不对">C 不知道自己弹的对不对</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="D手指比较僵硬不灵活">D 手指比较僵硬不灵活</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="E弹得不流畅">E 弹得不流畅</button>
+                        </div>
+                        <button class="next-btn btn-primary w-full hidden">下一步</button>
+                    </div>
+                </div>
+
+                <!-- 问题8 -->
+                <div class="question hidden" data-question="8">
+                    <div class="w-full max-w-md">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="font-bold text-xl">如果这套课程适合你，你准备多久之内开始学习？</h3>
+                            <span class="text-red-500 text-sm">This question is required</span>
+                        </div>
+                        <div class="space-y-3 mb-6">
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="A马上">A 马上</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="B一个月内">B 一个月内</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="C三个月内">C 三个月内</button>
+                            <button class="answer-btn btn-secondary w-full text-left hover:bg-purple/5" data-value="D目前不考虑学习，未来可能会考虑。">D 目前不考虑学习，未来可能会考虑。</button>
+                        </div>
+                        <button class="submit-btn btn-primary w-full hidden">提交</button>
+                    </div>
+                </div>
+
+                <!-- 提交成功 -->
+                <div class="question hidden" data-question="success">
+                    <div class="w-full max-w-md text-center">
+                        <div class="text-6xl text-purple mb-6">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <h3 class="font-bold text-2xl mb-4">提交成功！</h3>
+                        <p class="mb-6">感谢您的咨询，我们会尽快与您联系。</p>
+                        <p class="text-lg font-medium text-purple mb-8">咨询名额有限，先到先得。</p>
+                        <button id="restart-questionnaire" class="btn-primary">重新填写</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 问卷逻辑
+        const answers = {};
+        let currentQuestion = 1;
+        let totalQuestions = 7; // 初始总问题数（1-7，问题8是最后一个）
+        const allQuestionsCount = 8; // 实际问题总数（1-8）
+
+        // 问题导航
+        function showQuestion(number) {
+            // 隐藏所有问题
+            document.querySelectorAll('.question').forEach(question => {
+                question.classList.add('hidden');
+                question.classList.remove('fade-in');
+            });
+
+            // 显示当前问题
+            const question = document.querySelector(`.question[data-question="${number}"]`);
+            question.classList.remove('hidden');
+            setTimeout(() => {
+                question.classList.add('fade-in');
+            }, 50);
+
+            currentQuestion = number;
+            // 计算进度（当前问题在总流程中的位置）
+            const progress = (number / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('progress-text').textContent = `${number}/${totalQuestions}`;
+        }
+
+        // 下一步按钮点击事件
+        document.querySelectorAll('.next-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let isValid = true;
+
+                // 验证问题1（姓名）
+                if (currentQuestion === 1) {
+                    const name = document.getElementById('name').value.trim();
+                    const nameError = document.getElementById('name-error');
+                    if (!name) {
+                        nameError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        nameError.classList.add('hidden');
+                        answers.name = name;
+                    }
+                }
+                // 验证问题5（邮箱）
+                else if (currentQuestion === 5) {
+                    const email = document.getElementById('email').value.trim();
+                    const emailError = document.getElementById('email-error');
+                    if (!email || !validateEmail(email)) {
+                        emailError.classList.remove('hidden');
+                        isValid = false;
+                    } else {
+                        emailError.classList.add('hidden');
+                        answers.email = email;
+                    }
+                }
+
+                if (!isValid) return;
+
+                // 条件跳转：零基础跳过问题7
+                if (currentQuestion === 4 && answers.question4 === 'A零基础') {
+                    totalQuestions = 7; // 跳过问题7后，总问题数变为7（1-6,8）
+                    showQuestion(5); // 问题4 → 问题5
+                } else {
+                    // 正常跳转：当前问题+1
+                    const nextNum = currentQuestion + 1;
+                    // 当到达问题7且是零基础用户时，直接跳问题8
+                    if (nextNum === 7 && answers.question4 === 'A零基础') {
+                        showQuestion(8);
+                    } else {
+                        showQuestion(nextNum);
+                    }
+                }
+            });
+        });
+
+        // 答案按钮点击事件（选中样式+显示下一步）
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.closest('.space-y-3, .grid');
+                // 重置同组按钮样式
+                parent.querySelectorAll('.answer-btn').forEach(b => {
+                    b.classList.remove('btn-selected');
+                    b.classList.add('hover:bg-purple/5');
+                });
+                // 设置当前按钮选中样式
+                btn.classList.add('btn-selected');
+                btn.classList.remove('hover:bg-purple/5');
+
+                // 保存答案
+                const questionNumber = currentQuestion;
+                answers[`question${questionNumber}`] = btn.getAttribute('data-value');
+
+                // 显示下一步/提交按钮
+                const nextBtn = btn.closest('.question').querySelector('.next-btn, .submit-btn');
+                nextBtn.classList.remove('hidden');
+            });
+        });
+
+        // 提交按钮点击事件
+        document.querySelector('.submit-btn').addEventListener('click', () => {
+            // 验证是否选择答案
+            if (!answers[`question${currentQuestion}`]) {
+                alert('请选择一个选项');
+                return;
+            }
+
+            // 提交逻辑（实际项目中可发送到后端）
+            console.log('提交答案:', answers);
+
+            // 显示成功页
+            showQuestion('success');
+        });
+
+        // 重新填写按钮
+        document.getElementById('restart-questionnaire').addEventListener('click', () => {
+            // 重置数据
+            Object.keys(answers).forEach(key => delete answers[key]);
+            currentQuestion = 1;
+            totalQuestions = 7;
+
+            // 重置表单
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.querySelectorAll('.error-text').forEach(el => el.classList.add('hidden'));
+
+            // 重置按钮样式
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('btn-selected');
+                btn.classList.add('hover:bg-purple/5');
+            });
+            document.querySelectorAll('.next-btn, .submit-btn').forEach(btn => {
+                btn.classList.add('hidden');
+            });
+
+            // 显示第一个问题
+            showQuestion(1);
+        });
+
+        // 邮箱验证工具函数
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

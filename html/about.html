@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 Lucy - 用音乐连接热爱</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入优雅字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind配置 - 调整为浪漫艺术配色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFF9F2', // 奶油白（主背景）
+                        gold: '#E6C29E', // 柔和金色（强调色）
+                        goldDark: '#D4AF37', // 深金色（点缀）
+                        babyBlue: '#B8D0EB', // 粉蓝色（主辅助色）
+                        babyBlueLight: '#E8F4F8', // 淡粉蓝（背景）
+                        lavender: '#D8C3E3', // 淡紫色（辅助色）
+                        lavenderLight: '#F5F0FA', // 极淡紫（背景点缀）
+                        deepBlue: '#4A6FA5', // 深粉蓝（主文字）
+                        darkBlue: '#3A5A8C', // 更深的蓝色，更清晰
+                        purple: '#9333ea', // 主紫色
+                        lightPurple: '#f0e6ff', // 淡紫色
+                        purpleAccent: '#b894e6', // 与紫色搭配的浅紫色（按钮新颜色）
+                        // 添加金色系列
+                    gold: {
+                        light: '#FFD700', // 亮金色
+                        DEFAULT: '#D4AF37', // 标准金色（古铜金）
+                        dark: '#B8860B' // 深金色
+                    },
+                    // 添加金紫色系列
+                    goldPurple: {
+                        light: '#E6C5FF', // 浅金紫（带金色光泽的淡紫）
+                        DEFAULT: '#C897E8', // 标准金紫（紫中带暖金调）
+                        dark: '#A267CC', // 深金紫（浓郁紫+暗金质感）
+                        accent: '#D4B2FF' // 金紫高光（更亮的光泽感）
+                    },
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'], // 衬线字体（标题）
+                        sans: ['Noto Sans SC', 'sans-serif'], // 无衬线字体（正文）
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .piano-key-line {
+                background-image: linear-gradient(90deg, transparent 0%, rgba(74, 111, 165, 0.1) 50%, transparent 100%);
+                background-size: 100% 1px;
+            }
+            .music-ornament::before {
+                content: "♫";
+                position: absolute;
+                color: rgba(216, 195, 227, 0.3);
+                font-size: 3rem;
+                top: -1.5rem;
+                left: -1rem;
+            }
+            .nav-link {
+        @apply text-lg font-bold text-black hover:text-gold transition-colors duration-300;
+    }
+
+            .signature {
+                font-family: 'Brush Script MT', cursive;
+                font-size: 2rem;
+                color: #4A6FA5;
+                opacity: 0.9;
+            }
+
+            .gold-bold {
+                            @apply text-gold-dark font-bold;
+                        }
+                        /* 黑色粗体工具类（可选，简化重复使用） */
+                                    .black-bold {
+                                        @apply text-dark font-bold;
+                                    }
+
+        }
+    </style>
+  </head>
+  <body class="bg-white text-dark font-sans">
+  <!-- 导航栏 - 菜单靠左并紧贴Logo -->
+  <header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center">
+                <!-- Logo（优化为本地图片引用） -->
+                <div class="flex items-center mr-4">
+                    <!-- 建议：将你的logo图片命名为"lucy-piano-logo.png"，放在网站根目录 -->
+                    <!-- 若图片在images文件夹，路径改为"images/lucy-piano-logo.png" -->
+                    <img src="../images/lucy-piano-logo.png"
+                         alt="Lucy Piano Logo"
+                         class="h-28 w-auto rounded-full object-cover"
+                         onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
+                    <!-- 上面的onerror是备用链接，防止本地图片加载失败 -->
+                </div>
+
+              <!-- 菜单（改为新页面打开） -->
+              <nav class="hidden md:flex items-center space-x-6 flex-1">
+                  <a href="index.html" target="_blank" class="nav-link">成人钢琴课</a>
+                  <a href="about.html" target="_blank" class="nav-link">关于我们</a>
+                  <a href="contact.html" target="_blank" class="nav-link">联系老师</a>
+                  <a href="free-courses.html" target="_blank" class="nav-link">免费课程</a>
+                  <a href="rcm-courses.html" target="_blank" class="nav-link">RCM课程</a>
+                  <a href="student.html" target="_blank" class="nav-link">学生作品</a>
+                  <a href="music-share.html" target="_blank" class="nav-link">音乐分享</a>
+              </nav>
+
+              <!-- 移动端菜单按钮 -->
+              <button id="mobile-menu-button" class="md:hidden text-dark text-2xl focus:outline-none ml-auto">
+                  <i class="fa fa-bars"></i>
+              </button>
+          </div>
+
+          <!-- 移动端菜单（同步改为新页面打开） -->
+          <div id="mobile-menu" class="md:hidden hidden pb-6">
+              <div class="flex flex-col space-y-4">
+                  <a href="index.html" target="_blank" class="nav-link py-2">成人钢琴课</a>
+                  <a href="about.html" target="_blank" class="nav-link py-2">关于我们</a>
+                  <a href="contact.html" target="_blank" class="nav-link py-2">联系老师</a>
+                  <a href="free-courses.html" target="_blank" class="nav-link py-2">免费课程</a>
+                  <a href="rcm-courses.html" target="_blank" class="nav-link py-2">RCM课程</a>
+                  <a href="student.html" target="_blank" class="nav-link py-2">学生作品</a>
+                  <a href="music-share.html" target="_blank" class="nav-link py-2">音乐分享</a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* 降低层级，确保在内容下方 */
+        pointer-events: none;
+        overflow: hidden;
+    ">
+        <!-- 主水印 -->
+        <img
+            src="../images/watermark-big.png"
+            alt="钢琴水印"
+            style="
+                position: absolute;
+                left: 50%;
+                bottom: 10%; /* 底部10%位置 */
+                transform: translateX(-50%);
+                max-width: 60%; /* 最大宽度为屏幕60% */
+                height: auto;
+                opacity: 0.25; /* 降低透明度 */
+            "
+        >
+
+
+    </div>
+
+<!-- 页面标题区 -->
+<section class="py-12 piano-key-line relative overflow-hidden">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="font-serif font-bold text-[clamp(2rem,5vw,1.5rem)] text-3xl mb-4 text-gold-dark leading-tight">
+            关于老师 <span class="text-gold-dark"> </span>
+        </h1>
+        <p class="font-bold font-serif italic text-indigo-600 max-w-2xl mx-auto">
+            二十多年钢琴教学之路，让每一位学员与音乐温柔相遇
+        </p>
+        <!-- 装饰音符 -->
+        <div class="absolute top-1/2 left-10 transform -translate-y-1/2 text-lavender/20 text-5xl hidden md:block">♪</div>
+        <div class="absolute top-1/2 right-10 transform -translate-y-1/2 text-lavender/20 text-5xl hidden md:block">♫</div>
+    </div>
+</section>
+
+
+<!-- 主内容区 - 仅修改个人介绍区 -->
+<main class="py-14">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <!-- 个人介绍区：仅修改此处 -->
+        <div class="mb-10">
+            <!-- 左侧纯圆形照片（增大且居中） -->
+            <div class="w-full md:w-1/3 md:float-left md:pr-6 flex justify-center pt-2">
+                <div class="w-56 h-56 rounded-full overflow-hidden shadow-lg border-4 border-white">
+                    <img
+                        src="../images/lucy01.png"
+                        alt="Lucy老师照片"
+                        class="w-full h-full object-cover"
+                        onerror="this.src='https://picsum.photos/id/64/400/400'; this.onerror=null;"
+                    >
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gold/10 rounded-full -z-10"></div>
+                <div class="absolute -top-6 -left-6 w-20 h-20 bg-lavender/10 rounded-full -z-10"></div>
+            </div>
+
+            <!-- 右侧文字区右移（通过减少左侧占比实现） -->
+            <div class="w-full md:w-2/3 md:float-right bg-cream rounded-xl p-6 shadow-sm">
+            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark border-b border-gold/30 pb-2">
+                    遇见您的钢琴引路人
+            </h2>
+                <p class="text-black/85 leading-relaxed mt-4">
+                    我是 Lucy，加拿大皇家音乐学院RCM钢琴和乐理老师。从音乐学院的本科生到四岁的琴童，从重返钢琴的上班族到退休圆梦的阿姨，二十多年的教学生涯让我有幸陪伴各式各样的学习者。跨越中西方音乐教育的经历，也让我在黑白琴键间积累了独特的教学经验和心得。
+                </p>
+                <p class="text-black/85 leading-relaxed mt-4">
+                    尤其理解成人学琴的挑战，为此我专门设计了线上系统钢琴课程。若你心底始终住着个想弹琴的自己，若你想要专业指导，又需要灵活安排——不妨从这里开始你的音乐旅程，或许这种"随时可学、有问必答"的方式，正是你需要的。
+                </p>
+                <div class="flex items-center gap-4 pt-2 h-10">
+                    <!-- 原始空容器保留 -->
+                </div>
+            </div>
+
+            <div class="clear-both"></div>
+        </div>
+
+
+        <!-- 课程理念区 - 移除hover效果 -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm mb-16 relative music-ornament">
+            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-goldDark mb-6 text-center">
+                专为成人打造的钢琴自由之路
+            </h2>
+
+            <p class="text-blue/85 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+                我深知成人学琴的独特挑战：指尖的僵硬、识谱的卡顿、练琴时间的碎片化……这些细碎的阻碍，恰恰成了我打磨课程的初心
+            </p>
+
+            <!-- 三大核心优势 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 优势1 -->
+                <div class="bg-lavenderLight p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-lavender/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-laptop text-lavender"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">线上专属课程体系</h3>
+                    <p class="text-black text-sm">将扎实基本功与灵动音乐性编织成网，让每一分钟练习都有方向，碎片时间也能高效利用。</p>
+                </div>
+
+                <!-- 优势2 -->
+                <div class="bg-babyBlueLight p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-babyBlue/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-user text-babyBlue"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">1对1精准指导</h3>
+                    <p class="text-black text-sm">从基础乐理、手指机能训练，从演奏技巧到视频作业细致批改，及时反馈优化。我会陪你稳稳走过每一步，全程陪伴成长。</p>
+                </div>
+
+                <!-- 优势3 -->
+                <div class="bg-gold/5 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-star text-goldDark"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">三大核心突破</h3>
+                    <p class="text-black text-sm">重塑手指机能、加速视奏能力、培养音乐性，从第一节课起种下乐句呼吸的意识。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学员收获区 - 移除hover效果 -->
+        <div class="mb-16">
+            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark mb-6 text-center">
+                您将收获的不只是技巧
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="border border-gold/20 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-clock-o text-deepBlue"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">高效进步</h3>
+                    </div>
+                    <p class="text-black text-sm">即使每天只有二三十分钟，也能在系统化节奏里看见持续进步，告别无效练习。</p>
+                </div>
+
+                <div class="border border-babyBlue/20 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-babyBlue/10 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-music text-deepBlue"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">理解音乐</h3>
+                    </div>
+                    <p class="text-black text-sm">摆脱「照谱硬弹」的困境，真正读懂音乐结构与情感表达，让旋律走进心里。</p>
+                </div>
+
+                <div class="border border-lavender/20 rounded-xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-lavender/10 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-heart text-deepBlue"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">热爱绽放</h3>
+                    </div>
+                    <p class="text-black text-sm">在几个月内流畅演奏自己喜爱的曲目，感受音乐带来的成就感与治愈力。让指尖流淌的不仅是音符，更是藏了许久的热爱。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 教学理念与初心 -->
+        <div class="bg-lavenderLight/30 rounded-2xl p-8 md:p-10 relative overflow-hidden">
+            <!-- 背景装饰 -->
+            <div class="absolute top-0 right-0 w-40 h-40 bg-lavender/10 rounded-full -mr-20 -mt-20"></div>
+            <div class="absolute bottom-0 left-0 w-60 h-60 bg-babyBlue/10 rounded-full -ml-30 -mb-30"></div>
+
+            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark text-center mb-6 text-center relative z-10">
+                教学是一场与热爱同行的修行
+            </h2>
+
+            <!-- 教学理念与初心 - 统一字体样式 -->
+          <div class="space-y-6 relative z-10">
+              <p class="font-serif italic font-bold text-black leading-relaxed text-center">
+                  钢琴于我，早已不是冰冷的乐器，而是流淌在生命里的温暖底色。每当指尖轻触琴键，旋律便如月光般漫过心湖，在喧嚣中沉淀出澄澈的平静，也在迷茫时唤醒心底的力量。
+              </p>
+              <p class="font-serif italic font-bold text-indigo-600 leading-relaxed text-center">
+                  而比这更动人的，是见证每一位学员与音乐的相遇——从指尖的生涩试探到旋律的自然流淌，从眼底的迟疑困惑到眼中跃动的光芒与喜悦。你们每一步成长的印记，都让我愈发坚信教学的意义。
+              </p>
+                <p class="font-serif italic font-bold text-black leading-relaxed text-center">
+                  学琴从不必用时间的长度衡量热爱的深度。哪怕每天只有片刻的专注，只要循着温柔而系统的指引扎根练习，钢琴的基础便会如草木般悄然生长，那些藏在音符里的美好与希望，会让平凡的日子也泛起诗意的涟漪。
+              </p>
+          </div>
+
+
+        </div>
+    </div>
+</main>
+
+<!-- 页脚 -->
+<footer class="bg-white py-10 border-t border-gray-200">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-8">
+            <div class="flex items-center">
+                <i class="fa fa-envelope text-purple mr-3 text-xl"></i>
+                <span>EMAIL：lucymusic.piano@gmail.com</span>
+            </div>
+            <div class="flex items-center">
+                <i class="fa fa-weixin text-purple mr-3 text-xl"></i>
+                <span>WECHAT：Lucy-Piano </span>
+            </div>
+            <div class="flex items-center">
+                <i class="fa fa-youtube-play text-purple mr-3 text-xl"></i>
+                <a href="#" class="text-purple hover:underline">YOUTUBE CHANNEL</a>
+            </div>
+        </div>
+
+        <div class="text-center text-gray-600">
+            <p>lucy-piano© 2025. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    // 移动端菜单切换
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuButton.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        } else {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        }
+    });
+
+    // 页面滚动动画（保留基础动画，移除hover相关）
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section > div, main > div > div');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(section);
+        });
+    });
+</script>
+
+<!-- 底部装饰音符 -->
+<div class="fixed bottom-8 left-8 text-lavender/20 text-4xl pointer-events-none hidden md:block">♪</div>
+<div class="fixed bottom-16 right-10 text-gold/20 text-3xl pointer-events-none hidden md:block">♫</div>
+
+</body>
+</html>
