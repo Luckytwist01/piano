@@ -95,7 +95,7 @@
               </div>
             <!-- 菜单（改为新页面打开） -->
             <nav class="hidden md:flex items-center space-x-6 flex-1">
-                <a href="index.html" target="_blank" class="nav-link">成人钢琴课</a>
+                <a href="index.html" class="nav-link">成人钢琴课</a>
                 <a href="html/about.html" target="_blank" class="nav-link">关于我们</a>
                 <a href="html/contact.html" target="_blank" class="nav-link">联系老师</a>
                 <a href="html/free-courses.html" target="_blank" class="nav-link">免费课程</a>
@@ -383,41 +383,8 @@
     <p class="mt-6 font-medium text-indigo-600">这些温暖的瞬间，不必等“有空”才开始。现在就迈出第一步，让钢琴成为你生活里的小确幸吧～</p>
 </div>
   </section>
-  <!-- 页脚水印Canvas容错 -->
-<script>
-  // 页脚水印 - 增加图片加载失败处理
-  const canvas = document.getElementById('footer-watermark');
-  const ctx = canvas.getContext('2d');
-  function setWatermarkArea() {
-      const pageWidth = document.body.offsetWidth;
-      const pageHeight = document.body.offsetHeight;
-      canvas.width = pageWidth;
-      canvas.height = pageHeight * 0.25;
-      canvas.style.height = `${canvas.height}px`;
-      drawFooterWatermark();
-  }
-  function drawFooterWatermark() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const logo = new Image();
-      logo.src = '/images/watermark-big.png';
-      // 加载失败时使用备用图
-      logo.onerror = function() {
-          logo.src = 'https://picsum.photos/id/237/100/60';
-      };
-      logo.onload = function() {
-          ctx.globalAlpha = 0.1;
-          const logoW = 100;
-          const logoH = 60;
-          const gap = logoW * 1.5;
-          for (let x = 0; x < canvas.width; x += gap) {
-              const y = (canvas.height - logoH) / 2;
-              ctx.drawImage(logo, x, y, logoW, logoH);
-          }
-      };
-  }
-  window.addEventListener('load', setWatermarkArea);
-  window.addEventListener('resize', setWatermarkArea);
-</script>
+  
+    
     <!-- 页脚 -->
     <footer class="bg-white py-10 border-t border-gray-200">
         <div class="container mx-auto px-4">
