@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入优雅字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-
     <!-- 配置自定义颜色 -->
      <script>
          tailwind.config = {
@@ -54,46 +53,41 @@
    <header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
              <div class="flex flex-wrap items-center">
-                 <!-- 若图片在images文件夹，路径改为"images/Lucy-piano-logo.png" -->
+                 <div class="flex items-center mr-4">
                     <img src="../images/Lucy-piano-logo.png"
                          alt="Lucy Piano Logo"
                          class="h-28 w-auto rounded-full object-cover"
                          onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
-                    <!-- 上面的onerror是备用链接，防止本地图片加载失败 -->
-                </div>
-
-               <!-- 菜单（改为新页面打开） -->
+                 </div>
+               <!-- 菜单，全部不新开页面 -->
                <nav class="hidden md:flex items-center space-x-6 flex-1">
                    <a href="../index.html" class="nav-link py-2">成人钢琴课</a>
-       <a href="about.html" class="nav-link">关于老师</a>
-              <a href="contact.html" class="nav-link">联系我们</a>
-              <a href="free-courses.html" class="nav-link">免费课程</a>
-              <a href="rcm-courses.html" class="nav-link">RCM课程</a>
-              <a href="student.html" class="nav-link">学生作品</a>
-              <a href="music-share.html" class="nav-link">音乐分享</a>>
+                   <a href="about.html" class="nav-link">关于老师</a>
+                   <a href="contact.html" class="nav-link">联系我们</a>
+                   <a href="free-courses.html" class="nav-link">免费课程</a>
+                   <a href="rcm-courses.html" class="nav-link">RCM课程</a>
+                   <a href="student.html" class="nav-link">学生作品</a>
+                   <a href="music-share.html" class="nav-link">音乐分享</a>
                </nav>
-
                <!-- 移动端菜单按钮 -->
                <button id="mobile-menu-button" class="md:hidden text-trueBlack text-2xl focus:outline-none ml-auto">
                    <i class="fa fa-bars"></i>
                </button>
            </div>
-
-           <!-- 移动端菜单（同步改为新页面打开） -->
+           <!-- 移动端菜单，全部不新开页面 -->
            <div id="mobile-menu" class="md:hidden hidden pb-6">
                <div class="flex flex-col space-y-4">
                    <a href="../index.html" class="nav-link py-2">成人钢琴课</a>
-       <a href="about.html" class="nav-link">关于老师</a>
-              <a href="contact.html" class="nav-link">联系我们</a>
-              <a href="free-courses.html" class="nav-link">免费课程</a>
-              <a href="rcm-courses.html" class="nav-link">RCM课程</a>
-              <a href="student.html" class="nav-link">学生作品</a>
-              <a href="music-share.html" class="nav-link">音乐分享</a>
+                   <a href="about.html" class="nav-link">关于老师</a>
+                   <a href="contact.html" class="nav-link">联系我们</a>
+                   <a href="free-courses.html" class="nav-link">免费课程</a>
+                   <a href="rcm-courses.html" class="nav-link">RCM课程</a>
+                   <a href="student.html" class="nav-link">学生作品</a>
+                   <a href="music-share.html" class="nav-link">音乐分享</a>
                </div>
            </div>
        </div>
    </header>
-
   <div style="
         position: fixed;
         top: 0;
@@ -118,80 +112,26 @@
                 opacity: 0.25; /* 降低透明度 */
             "
         >
-
-
     </div>
-
-<!-- 主内容区：信息收集表单 + 直接联系方式（移除顶部标题区） -->
+<!-- 主内容区 -->
 <main class="py-14">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl relative z-20">
-            <!-- 信息收集表单 -->
+            <!-- 引导文字区块，替换原来的表单 -->
             <div class="bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm mb-16 relative music-ornament">
                 <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,2rem)] text-darkBlue mb-6 text-center">
-                    告诉我
+                    欢迎咨询
                 </h2>
-
-                <!-- 表单配置：发送到指定邮箱 -->
-                <form class="max-w-2xl mx-auto space-y-6"
-                      action="mailto:lucymusic.piano@gmail.com"
-                      method="GET"
-                      enctype="text/plain">
-
-                    <!-- 称呼输入 -->
-                    <div>
-                        <label for="name" class="block text-gold font-medium mb-2">您的称呼</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            class="form-input"
-                            placeholder="请输入您的姓名或昵称"
-                            required
-                        >
-                    </div>
-
-                    <!-- 联系方式输入 -->
-                    <div>
-                        <label for="contact" class="block text-gold font-medium mb-2">邮箱/微信联系</label>
-                        <input
-                            type="text"
-                            id="contact"
-                            name="contact"
-                            class="form-input"
-                            placeholder="请输入邮箱地址或微信号"
-                            required
-                        >
-                    </div>
-
-                    <!-- 学琴现状描述 -->
-                    <div>
-                        <label for="status" class="block text-gold font-medium mb-2">关于您和学琴的现状</label>
-                        <textarea
-                            id="status"
-                            name="status"
-                            rows="4"
-                            class="form-input"
-                            placeholder="请简单描述你的学琴基础（如：零基础/有基础）、学习目标和时间安排等"
-                            required
-                        ></textarea>
-                    </div>
-
-                    <!-- 提交按钮 -->
-                    <div class="text-center pt-2">
-                        <button type="submit" class="px-8 py-3 bg-primary text-white rounded-lg font-serif font-bold hover:bg-primary/90 transition-colors shadow-sm transform hover:-translate-y-0.5 duration-200">
-                            发送信息
-                        </button>
-                    </div>
-                </form>
+                <div class="max-w-2xl mx-auto text-center text-lg space-y-4">
+                    <p>如果您想要获取专属成人钢琴学习方案，请回到首页填写评估问卷。</p>
+                    <p>您也可以直接通过下面渠道和我沟通课程相关问题。</p>
+                </div>
             </div>
-        </div>
 
-        <!-- 直接联系方式板块 -->
+        <!-- 直接联系方式板块（原样保留你的三块） -->
         <div class="bg-white rounded-2xl p-8 md:p-10 shadow-sm relative music-ornament">
             <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,2rem)] text-darkBlue mb-8 text-center">
                 直接联系我
             </h2>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <!-- 微信联系 -->
                 <div class="flex flex-col items-center text-center p-6 bg-primary/5 rounded-xl">
@@ -202,7 +142,6 @@
                     <p class="text-textDark/75 text-sm mb-3">添加好友时请备注"钢琴咨询"</p>
                     <p class="font-medium text-textDark">Lucy-Piano</p>
                 </div>
-
                 <!-- 邮件联系 -->
                 <div class="flex flex-col items-center text-center p-6 bg-secondary/30 rounded-xl">
                     <div class="w-16 h-16 bg-secondary/40 rounded-full flex items-center justify-center mb-4">
@@ -212,8 +151,7 @@
                     <p class="text-textDark/75 text-sm mb-3">尽快回复，可附学习问题描述</p>
                     <p class="font-medium text-textDark">lucymusic.piano@gmail.com</p>
                 </div>
-
-                <!-- 视频号 -->
+                <!-- YouTube -->
                 <div class="flex flex-col items-center text-center p-6 bg-primary/5 rounded-xl">
                     <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-4">
                         <i class="fa fa-youtube-play text-2xl text-primary"></i>
@@ -226,7 +164,6 @@
         </div>
     </div>
 </main>
-
 <!-- 页脚 -->
 <footer class="bg-white py-10 border-t border-gray-200">
     <div class="container mx-auto px-4">
@@ -244,20 +181,16 @@
                 <a href="#" class="text-purple hover:underline">YOUTUBE CHANNEL</a>
             </div>
         </div>
-
         <div class="text-center text-gray-600">
             <p>lucyPiano© 2025. All rights reserved.</p>
         </div>
     </div>
 </footer>
-
-
-<!-- JavaScript（与前两页完全一致） -->
+<!-- JavaScript（和原来一样） -->
 <script>
     // 移动端菜单切换
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         const icon = mobileMenuButton.querySelector('i');
@@ -269,7 +202,6 @@
             icon.classList.add('fa-times');
         }
     });
-
     // 页面滚动动画
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('main > div > div');
@@ -281,17 +213,14 @@
                 }
             });
         }, { threshold: 0.1 });
-
         sections.forEach(section => {
             section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
             observer.observe(section);
         });
     });
 </script>
-
 <!-- 底部装饰音符 -->
 <div class="fixed bottom-8 left-8 text-primary/20 text-4xl pointer-events-none hidden md:block">♪</div>
 <div class="fixed bottom-16 right-10 text-secondary/30 text-3xl pointer-events-none hidden md:block">♫</div>
-
 </body>
 </html>
