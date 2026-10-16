@@ -182,39 +182,14 @@
 </section>
 
   <!-- 宣传文案区域 -->
-  <section class="py-16 bg-white">
-      <div class="container mx-auto px-4 max-w-5xl">
-          <div class="bg-blue-100 px-8 py-4 rounded-xl mb-12 mx-4 md:mx-0">
-              <h2 class="font-bold text-[clamp(2rem,2vw,1.5rem)] text-center text-purple leading-tight">
-                  无压力学琴，悄悄惊艳所有人，实现钢琴自由梦！
-              </h2>
-          </div>
+<section class="py-8 bg-white">
+    <div class="container mx-auto px-4 max-w-5xl">
+        <div class="bg-blue-100 px-8 py-4 rounded-xl mb-12 mx-4 md:mx-0">
+            <h2 class="font-bold text-[clamp(2rem,2vw,1.5rem)] text-center text-purple leading-tight">
+                无压力学琴，悄悄惊艳所有人，实现钢琴自由梦！
+            </h2>
+        </div>
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        // 视频声音处理
-        window.addEventListener('load', function() {
-            const video = document.getElementById('main-video');
-            const toggleBtn = document.getElementById('sound-toggle');
-            let isMuted = true;
-            video.play().catch(() => {
-                video.addEventListener('click', () => video.play(), { once: true });
-            });
-            toggleBtn.addEventListener('click', function() {
-                isMuted = !isMuted;
-                if (isMuted) {
-                    toggleBtn.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
-                    video.muted = true;
-                    video.volume = 0;
-                } else {
-                    toggleBtn.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
-                    video.muted = false;
-                    video.volume = 1;
-                }
-            });
-        });
-    </script>
 
         <!-- 宣传文案区域（原来的大块标语板块删掉了，卡片内容保留） -->
   <section class="py-16 bg-white">
@@ -411,6 +386,32 @@
     </footer>
     <!-- JavaScript -->
     <script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // 视频声音处理
+        window.addEventListener('load', function() {
+            const video = document.getElementById('main-video');
+            const toggleBtn = document.getElementById('sound-toggle');
+            let isMuted = true;
+            video.play().catch(() => {
+                video.addEventListener('click', () => video.play(), { once: true });
+            });
+            toggleBtn.addEventListener('click', function() {
+                isMuted = !isMuted;
+                if (isMuted) {
+                    toggleBtn.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
+                    video.muted = true;
+                    video.volume = 0;
+                } else {
+                    toggleBtn.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
+                    video.muted = false;
+                    video.volume = 1;
+                }
+            });
+        });
+    </script>
+
+        
         // 移动端菜单切换
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
