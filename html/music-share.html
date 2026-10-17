@@ -6,7 +6,6 @@
     <title>音乐分享 - Lucy Piano</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <script>
         tailwind.config = {
             theme: {
@@ -41,7 +40,6 @@
             }
         }
     </script>
-
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -75,7 +73,6 @@
         }
     </style>
 </head>
-
 <body class="bg-lightPurple text-dark">
     <!-- 导航栏保持一致 -->
     <header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
@@ -87,7 +84,6 @@
                          class="h-28 w-auto rounded-full object-cover"
                          onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
                 </div>
-
                 <nav class="hidden md:flex items-center space-x-6 flex-1">
                    <a href="../index.html" class="nav-link">成人钢琴课</a>
               <a href="about.html" class="nav-link">关于老师</a>
@@ -97,12 +93,10 @@
               <a href="student.html" class="nav-link">学生作品</a>
               <a href="music-share.html" class="nav-link">音乐分享</a>
                 </nav>
-
                 <button id="mobile-menu-button" class="md:hidden text-dark text-2xl focus:outline-none ml-auto">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
-
             <div id="mobile-menu" class="md:hidden hidden pb-6">
                 <div class="flex flex-col space-y-4">
                    <a href="../index.html" class="nav-link">成人钢琴课</a>
@@ -116,7 +110,6 @@
             </div>
         </div>
     </header>
-
     <div style="
           position: fixed;
           top: 0;
@@ -141,108 +134,105 @@
                   opacity: 0.25; /* 降低透明度 */
               "
           >
-
-
       </div>
-
-
-    <!-- 页面内容 - 调整布局密度 -->
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- 页面内容 -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-3xl md:text-4xl font-bold text-center text-purple mb-12">🎵 音乐分享</h1>
 
-        <!-- YouTube音乐频道 -->
-        <h2 class="section-title">
-            <i class="fa fa-youtube-play text-green-accent mr-3"></i> YouTube音乐频道
-        </h2>
-
-        <!-- 调整网格列数，减少宽屏时的列数，增加间距 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <div class="music-card border-l-4 border-purple">
-                <span class="bg-purpleAccent text-white text-xs px-3 py-1 rounded-full inline-block mb-3">推荐</span>
-                <p class="font-semibold text-lg mb-2">成人钢琴免费课程</p>
-                <p class="text-gray-600 text-sm mb-3">频道全称：@LucyPiano 露西钢琴</p>
-                <a href="https://www.youtube.com/你的频道链接" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
-                    <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
-                </a>
-                <p class="text-purple mt-3 text-sm flex items-center font-medium">
-                    <i class="fa fa-star text-gold mr-2"></i> 免费入门课程
-                </p>
+        <!-- 大屏左右分栏，手机单列 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- 左侧：YouTube频道，垂直竖排4张卡片 -->
+            <div>
+                <h2 class="section-title">
+                    <i class="fa fa-youtube-play text-green-accent mr-3"></i> YouTube音乐频道
+                </h2>
+                <div class="flex flex-col gap-6">
+                    <div class="music-card border-l-4 border-purple">
+                        <span class="bg-purpleAccent text-white text-xs px-3 py-1 rounded-full inline-block mb-3">推荐</span>
+                        <p class="font-semibold text-lg mb-2">成人钢琴免费课程</p>
+                        <p class="text-gray-600 text-sm mb-3">频道全称：@LucyPiano 露西钢琴</p>
+                        <a href="https://www.youtube.com/你的频道链接" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
+                            <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
+                        </a>
+                        <p class="text-purple mt-3 text-sm flex items-center font-medium">
+                            <i class="fa fa-star text-gold mr-2"></i> 免费入门课程
+                        </p>
+                    </div>
+                    <div class="music-card">
+                        <p class="font-semibold text-lg mb-2">冥想助眠疗愈音乐</p>
+                        <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-SleepMoon</p>
+                        <a href="https://www.youtube.com/@SoundBlossom-SleepMoon" target="_blank" class="text-green-accent hover:text-gold transition-colors flex items-center text-sm">
+                            <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
+                        </a>
+                    </div>
+                    <div class="music-card">
+                        <p class="font-semibold text-lg mb-2">工作学习休闲音乐</p>
+                        <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-LofiPiano</p>
+                        <a href="https://www.youtube.com/@SoundBlossom-LofiPiano" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
+                            <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
+                        </a>
+                    </div>
+                    <div class="music-card">
+                        <p class="font-semibold text-lg mb-2">多语言歌曲</p>
+                        <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-SongBird</p>
+                        <a href="https://www.youtube.com/@SoundBlossom-SongBird" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
+                            <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
+                        </a>
+                    </div>
+                </div>
+                <!-- 订阅提示 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gold text-center mt-8">
+                    <p class="text-purple font-medium">欢迎收听+支持+免费订阅音乐频道</p>
+                </div>
             </div>
 
-            <div class="music-card">
-                <p class="font-semibold text-lg mb-2">冥想助眠疗愈音乐</p>
-                <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-SleepMoon</p>
-                <a href="https://www.youtube.com/@SoundBlossom-SleepMoon" target="_blank" class="text-green-accent hover:text-gold transition-colors flex items-center text-sm">
-                    <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
-                </a>
-            </div>
-
-            <div class="music-card">
-                <p class="font-semibold text-lg mb-2">工作学习休闲音乐</p>
-                <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-LofiPiano</p>
-                <a href="https://www.youtube.com/@SoundBlossom-LofiPiano" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
-                    <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
-                </a>
-            </div>
-
-            <div class="music-card">
-                <p class="font-semibold text-lg mb-2">多语言歌曲</p>
-                <p class="text-gray-600 text-sm mb-3">频道全称：@SoundBlossom-SongBird</p>
-                <a href="https://www.youtube.com/@SoundBlossom-SongBird" target="_blank" class="text-purple hover:text-gold transition-colors flex items-center text-sm">
-                    <i class="fa fa-external-link text-green-accent mr-2"></i> 访问频道
-                </a>
+            <!-- 右侧：上面原创歌曲，下面K歌作品 -->
+            <div class="flex flex-col gap-10">
+                <!-- 原创歌曲 -->
+                <div>
+                    <h2 class="section-title">
+                        <i class="fa fa-microphone text-green-accent mr-3"></i> 原创歌曲
+                    </h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="music-card">
+                            <p class="font-semibold text-lg mb-4">《夏日晚风》- 原创单曲</p>
+                            <audio controls class="w-full mb-4 border border-purpleAccent rounded p-2 bg-lightPurple">
+                                <source src="./music/original-summer.mp3" type="audio/mpeg">
+                                你的浏览器不支持音频播放
+                            
+                            <p class="text-gray-600 text-sm flex items-center">
+                                <i class="fa fa-info-circle text-green-accent mr-2"></i> 原创音乐加载说明：将音频文件按路径存放（./music/目录下）即可正常播放
+                            </p>
+                        </div>
+                        <div class="music-card">
+                            <p class="font-semibold text-lg mb-4">《星空下的歌》- 原创单曲</p>
+                            <audio controls class="w-full border border-purpleAccent rounded p-2 bg-lightPurple">
+                                <source src="./music/original-star.mp3" type="audio/mpeg">
+                                你的浏览器不支持音频播放
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- K歌作品 -->
+                <div>
+                    <h2 class="section-title">
+                        <i class="fa fa-headphones text-primary mr-3"></i> K歌作品
+                    </h2>
+                    <div class="music-card p-6 text-center relative">
+                        <a href="https://static-play.kg.qq.com/node/personal?uid=649c9a842c2e318a35&shareUid=649c9a842c2e318a35&pageId=homepage_me"
+                           target="_blank"
+                           class="inline-flex items-center px-6 py-3 bg-primary/10 text-darkBlue hover:bg-primary/20 rounded-lg transition-all duration-300 font-medium">
+                            <i class="fa fa-music text-primary mr-2"></i> 访问我的K歌主页
+                        </a>
+                        <p class="text-gray-500 text-sm mt-4">点击链接查看所有K歌作品</p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- 订阅提示 -->
-        <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gold text-center mb-12 max-w-2xl mx-auto">
-            <p class="text-purple font-medium">欢迎收听+支持+免费订阅音乐频道</p>
-        </div>
-
-        <!-- 原创歌曲 -->
-        <h2 class="section-title">
-            <i class="fa fa-microphone text-green-accent mr-3"></i> 原创歌曲
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div class="music-card">
-                <p class="font-semibold text-lg mb-4">《夏日晚风》- 原创单曲</p>
-                <audio controls class="w-full mb-4 border border-purpleAccent rounded p-2 bg-lightPurple">
-                    <source src="./music/original-summer.mp3" type="audio/mpeg">
-                    你的浏览器不支持音频播放
-                </audio>
-                <p class="text-gray-600 text-sm flex items-center">
-                    <i class="fa fa-info-circle text-green-accent mr-2"></i> 原创音乐加载说明：将音频文件按路径存放（./music/目录下）即可正常播放
-                </p>
-            </div>
-
-            <div class="music-card">
-                <p class="font-semibold text-lg mb-4">《星空下的歌》- 原创单曲</p>
-                <audio controls class="w-full border border-purpleAccent rounded p-2 bg-lightPurple">
-                    <source src="./music/original-star.mp3" type="audio/mpeg">
-                    你的浏览器不支持音频播放
-                 ></think>
-            </div>
-        </div>
-
-        <!-- K歌作品区域 -->
-<h2 class="section-title">
-    <i class="fa fa-headphones text-primary mr-3"></i> K歌作品
-</h2>
-
-<div class="grid grid-cols-1 gap-8 mb-16 max-w-2xl mx-auto">
-    <div class="music-card p-6 text-center relative music-ornament">
-        <a href="https://static-play.kg.qq.com/node/personal?uid=649c9a842c2e318a35&shareUid=649c9a842c2e318a35&pageId=homepage_me"
-           target="_blank"
-           class="inline-flex items-center px-6 py-3 bg-primary/10 text-darkBlue hover:bg-primary/20 rounded-lg transition-all duration-300 font-medium">
-            <i class="fa fa-music text-primary mr-2"></i> 访问我的K歌主页
-        </a>
-        <p class="text-gray-500 text-sm mt-4">点击链接查看所有K歌作品</p>
     </div>
-</div>
 
     <!-- 页脚 -->
-    <footer class="bg-white border-t-2 border-purpleAccent py-8">
+    <footer class="bg-white border-t-2 border-purpleAccent py-8 mt-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center gap-6 mb-6">
                 <a href="mailto:lucymusic.piano@gmail.com" class="flex items-center text-dark hover:text-purple transition-colors">
@@ -260,15 +250,12 @@
             </div>
         </div>
     </footer>
-
     <!-- 装饰音符 -->
     <div class="fixed bottom-10 left-5 text-8xl text-purple/10 pointer-events-none z-[-1]">♪</div>
     <div class="fixed top-20 right-8 text-6xl text-gold/10 pointer-events-none z-[-1]">♫</div>
-
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
