@@ -103,21 +103,23 @@
 <!-- 最上面：一个小一点的 YouTube 方块，跟首页不一样 -->
 <!-- 这里不是首页那个本地视频，是你刚才给的那个 YouTube 链接：https://youtu.be/kSHmEcpr8fY -->
 <!-- 方块比下面那几行小：下面一行 2 个，这里只有一个，居中，宽度 max-w-md -->
-<!-- 中间的播放按钮是真的链接：一点它，就在新页面打开 YouTube 去看这个视频 -->
+<!-- 最上面这个方块：点中间的播放按钮，就在本页里放，不去 YouTube，跟首页那个视频一样 -->
 <section class="py-8 relative" style="z-index: 10;">
     <div class="container mx-auto px-4">
         <div class="text-center mb-6">
             <h1 class="font-bold text-3xl text-purple leading-tight">学生作品</h1>
         </div>
+        <!-- 最上面这个小方块的名字：写在它正上面 -->
+        <p class="text-center font-bold text-lg text-purple mb-4">学生作品片段</p>
         <div class="max-w-md mx-auto">
-            <a href="https://www.youtube.com/watch?v=kSHmEcpr8fY" target="_blank" rel="noopener" class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300" data-video-id="kSHmEcpr8fY" aria-label="在 YouTube 上观看学生演奏视频">
+            <div id="featured-video" class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="kSHmEcpr8fY">
                 <img src="https://i.ytimg.com/vi/kSHmEcpr8fY/hqdefault.jpg" alt="" class="w-full h-full object-cover">
                 <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <span class="play-button w-14 h-14 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                    <button type="button" class="play-button w-14 h-14 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all" aria-label="在本页播放这段视频">
                         <i class="fa fa-play text-white text-xl ml-1"></i>
-                    </span>
+                    </button>
                 </span>
-            </a>
+            </div>
         </div>
     </div>
 </section>
@@ -210,6 +212,22 @@
 </footer>
 
 <script>
+    // 最上面那个方块：点一下，就在本页里放，不去 YouTube（下面那几行还是点一下去 YouTube）
+    const featuredVideo = document.getElementById('featured-video');
+    if (featuredVideo) {
+        featuredVideo.addEventListener('click', function() {
+            const videoId = featuredVideo.getAttribute('data-video-id');
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            iframe.title = 'YouTube video player';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.className = 'w-full h-full absolute inset-0';
+            featuredVideo.innerHTML = '';
+            featuredVideo.appendChild(iframe);
+        });
+    }
+
     // 移动端菜单切换：点汉堡展开，再点收起；默认是藏起来的，不会和桌面菜单一起出现
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
