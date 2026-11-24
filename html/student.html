@@ -100,26 +100,24 @@
          style="position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%); max-width: 60%; height: auto; opacity: 0.25;">
 </div>
 
-<!-- 开头视频：照抄首页那一段的样式，只是改窄了一档 -->
-<!-- 首页是 max-w-3xl，这里是 max-w-xl，所以比首页窄一圈、小一圈 -->
-<!-- 视频文件先用首页同一个 videos/cover.mp4；想换成学生介绍视频时，把下面 src 改成 ../videos/你的视频文件名.mp4 -->
-<!-- 透明度跟首页一样是 opacity-30；想让视频更清楚，把 opacity-30 改成 opacity-100 -->
-<section class="py-8 relative overflow-hidden" style="background-color: #ffffff;">
+<!-- 最上面：一个小一点的 YouTube 方块，跟首页不一样 -->
+<!-- 这里不是首页那个本地视频，是你刚才给的那个 YouTube 链接：https://youtu.be/kSHmEcpr8fY -->
+<!-- 方块比下面那几行小：下面一行 2 个，这里只有一个，居中，宽度 max-w-md -->
+<!-- 中间的播放按钮是真的链接：一点它，就在新页面打开 YouTube 去看这个视频 -->
+<section class="py-8 relative" style="z-index: 10;">
     <div class="container mx-auto px-4">
-        <div class="max-w-xl mx-auto">
-            <div class="aspect-video overflow-hidden relative">
-                <video id="main-video" autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
-                    <source src="../videos/cover.mp4" type="video/mp4">
-                    您的浏览器不支持视频播放
-                </video>
-                <button id="sound-toggle" class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all" aria-label="切换声音">
-                    <i class="fa fa-volume-off text-white text-lg"></i>
-                </button>
-            </div>
-            <div class="text-center mt-6">
-                <h1 class="font-bold text-3xl text-purple leading-tight">学生作品</h1>
-                <p class="text-gray-700 leading-relaxed mt-3">听听学生们的演奏，每一首都是从零开始，一步一步弹出来的。</p>
-            </div>
+        <div class="text-center mb-6">
+            <h1 class="font-bold text-3xl text-purple leading-tight">学生作品</h1>
+        </div>
+        <div class="max-w-md mx-auto">
+            <a href="https://www.youtube.com/watch?v=kSHmEcpr8fY" target="_blank" rel="noopener" class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300" data-video-id="kSHmEcpr8fY" aria-label="在 YouTube 上观看学生演奏视频">
+                <img src="https://i.ytimg.com/vi/kSHmEcpr8fY/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-14 h-14 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-xl ml-1"></i>
+                    </span>
+                </span>
+            </a>
         </div>
     </div>
 </section>
@@ -133,16 +131,6 @@
 <section class="py-8 relative" style="z-index: 10;">
     <div class="container mx-auto px-4 max-w-5xl">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <!-- 方块 1 -->
-            <a href="https://www.youtube.com/watch?v=kSHmEcpr8fY" target="_blank" rel="noopener" class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300" data-video-id="kSHmEcpr8fY" aria-label="在 YouTube 上观看学生演奏视频">
-                <img src="https://i.ytimg.com/vi/kSHmEcpr8fY/hqdefault.jpg" alt="" class="w-full h-full object-cover">
-                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
-                        <i class="fa fa-play text-white text-2xl ml-1"></i>
-                    </span>
-                </span>
-            </a>
 
             <!-- 方块 2 -->
             <a href="https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_2" target="_blank" rel="noopener" class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300" data-video-id="YOUTUBE_VIDEO_ID_2" aria-label="在 YouTube 上观看学生演奏视频">
@@ -222,28 +210,6 @@
 </footer>
 
 <script>
-    // 开头视频声音处理：照抄首页
-    window.addEventListener('load', function() {
-        const video = document.getElementById('main-video');
-        const toggleBtn = document.getElementById('sound-toggle');
-        let isMuted = true;
-        video.play().catch(() => {
-            video.addEventListener('click', () => video.play(), { once: true });
-        });
-        toggleBtn.addEventListener('click', function() {
-            isMuted = !isMuted;
-            if (isMuted) {
-                toggleBtn.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
-                video.muted = true;
-                video.volume = 0;
-            } else {
-                toggleBtn.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
-                video.muted = false;
-                video.volume = 1;
-            }
-        });
-    });
-
     // 移动端菜单切换：点汉堡展开，再点收起；默认是藏起来的，不会和桌面菜单一起出现
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -258,8 +224,6 @@
             icon.classList.add('fa-times');
         }
     });
-    });
-
 </script>
 </body>
 </html>
