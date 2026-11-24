@@ -141,7 +141,7 @@
       color: #777;
     }
 
-    /* 底部页脚（和主页同款） */
+    /* 底部页脚 + 全局水印（和你主页完全统一） */
     footer {
       width: 100%;
       background: #222;
@@ -152,6 +152,15 @@
     }
     footer p {
       font-size: 14px;
+    }
+    /* 全局底部水印 */
+    .watermark {
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 12px;
+      color: #999;
+      background: #111;
     }
   </style>
 </head>
@@ -171,7 +180,7 @@
   <!-- 顶部30秒黑白循环视频横幅 -->
   <section class="top-video-banner">
     <video autoplay muted loop playsinline>
-      <!-- 此处替换成你的30秒视频文件名，例如：banner30s.mp4 -->
+      <!-- 替换为你的30秒视频文件名即可 -->
       <source src="banner30s.mp4" type="video/mp4">
     </video>
     <div class="video-overlay">
@@ -185,4 +194,27 @@
     <p class="work-desc">记录每一位学员的成长与蜕变，点滴进步，皆为星光</p>
     <div class="work-list">
       <!-- 作品卡片模板 - 可无限复制新增 -->
-      <div
+      <div class="work-card">
+        <div class="video-box">
+          <iframe src="" allowfullscreen></iframe>
+        </div>
+        <div class="work-info">
+          <h3 class="work-name">学员姓名 | 演奏曲目</h3>
+          <p class="work-detail">学习时长 / 考级阶段 / 录制时间</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 统一页脚 -->
+  <footer>
+    <p>© 2025 Lucy Piano Studio | All Rights Reserved</p>
+  </footer>
+
+  <!-- 全局底部水印（已补齐，和首页一致） -->
+  <div class="watermark">
+    Designed by Lucy Piano Studio · Exclusive Custom Design
+  </div>
+
+</body>
+</html>
