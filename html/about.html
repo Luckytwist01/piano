@@ -3,334 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于 Lucy - 用音乐连接热爱</title>
-    <!-- 引入外部资源 -->
+    <title>学生作品 - Lucy Piano Studio</title>
+    <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 引入优雅字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Tailwind配置 - 调整为浪漫艺术配色 -->
+    <!-- Tailwind配置：照抄首页 index.html 的配色和字体 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cream: '#FFF9F2', // 奶油白（主背景）
-                        gold: '#E6C29E', // 柔和金色（强调色）
-                        goldDark: '#D4AF37', // 深金色（点缀）
-                        babyBlue: '#B8D0EB', // 粉蓝色（主辅助色）
-                        babyBlueLight: '#E8F4F8', // 淡粉蓝（背景）
-                        lavender: '#D8C3E3', // 淡紫色（辅助色）
-                        lavenderLight: '#F5F0FA', // 极淡紫（背景点缀）
-                        deepBlue: '#4A6FA5', // 深粉蓝（主文字）
-                        darkBlue: '#3A5A8C', // 更深的蓝色，更清晰
-                        purple: '#9333ea', // 主紫色
-                        lightPurple: '#f0e6ff', // 淡紫色
-                        purpleAccent: '#b894e6', // 与紫色搭配的浅紫色（按钮新颜色）
-                        // 添加金色系列
-                    gold: {
-                        light: '#FFD700', // 亮金色
-                        DEFAULT: '#D4AF37', // 标准金色（古铜金）
-                        dark: '#B8860B' // 深金色
-                    },
-                    // 添加金紫色系列
-                    goldPurple: {
-                        light: '#E6C5FF', // 浅金紫（带金色光泽的淡紫）
-                        DEFAULT: '#C897E8', // 标准金紫（紫中带暖金调）
-                        dark: '#A267CC', // 深金紫（浓郁紫+暗金质感）
-                        accent: '#D4B2FF' // 金紫高光（更亮的光泽感）
-                    },
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        purple: '#9333ea',
+                        lightPurple: '#f0e6ff',
+                        purpleAccent: '#b894e6',
+                        gold: {
+                            light: '#FFD700',
+                            DEFAULT: '#D4AF37',
+                            dark: '#B8860B'
+                        },
+                        goldPurple: {
+                            light: '#E6C5FF',
+                            DEFAULT: '#C897E8',
+                            dark: '#A267CC',
+                            accent: '#D4B2FF'
+                        },
+                        neutral: '#F5F7FA',
+                        dark: '#1D2129',
                     },
                     fontFamily: {
-                        serif: ['Playfair Display', 'serif'], // 衬线字体（标题）
-                        sans: ['Noto Sans SC', 'sans-serif'], // 无衬线字体（正文）
+                        sans: ['SimHei', '黑体', 'sans-serif'],
                     },
                 }
             }
         }
     </script>
-
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
             }
-            .piano-key-line {
-                background-image: linear-gradient(90deg, transparent 0%, rgba(74, 111, 165, 0.1) 50%, transparent 100%);
-                background-size: 100% 1px;
-            }
-            .music-ornament::before {
-                content: "♫";
-                position: absolute;
-                color: rgba(216, 195, 227, 0.3);
-                font-size: 3rem;
-                top: -1.5rem;
-                left: -1rem;
-            }
             .nav-link {
-        @apply text-lg font-bold text-black hover:text-gold transition-colors duration-300;
-    }
-
-            .signature {
-                font-family: 'Brush Script MT', cursive;
-                font-size: 2rem;
-                color: #4A6FA5;
-                opacity: 0.9;
+                @apply text-lg font-bold hover:text-gold transition-colors duration-300;
             }
-
-            .gold-bold {
-                            @apply text-gold-dark font-bold;
-                        }
-                        /* 黑色粗体工具类（可选，简化重复使用） */
-                                    .black-bold {
-                                        @apply text-dark font-bold;
-                                    }
-
         }
     </style>
-  </head>
-  <body class="bg-white text-dark font-sans">
-  <!-- 导航栏 - 菜单靠左并紧贴Logo -->
-  <header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
+</head>
+<body class="bg-white text-dark font-sans">
+
+<!-- 导航栏：跟首页 index 一模一样（Logo 大小、菜单位置、7 个分类都一样） -->
+<!-- 唯一不同是路径：本页在 html/ 文件夹里，首页链接是 ../index.html，内页链接不加 html/ -->
+<header class="sticky top-0 bg-white/95 shadow-sm z-50 backdrop-blur-sm py-2">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap items-center">
-                <!-- Logo（优化为本地图片引用） -->
-                <div class="flex items-center mr-4">
-                    <!-- 建议：将你的logo图片命名为"lucy-piano-logo.png"，放在网站根目录 -->
-                    <!-- 若图片在images文件夹，路径改为"images/Lucy-piano-logo.png" -->
-                    <img src="../images/Lucy-piano-logo.png"
-                         alt="Lucy Piano Logo"
-                         class="h-28 w-auto rounded-full object-cover"
-                         onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
-                    <!-- 上面的onerror是备用链接，防止本地图片加载失败 -->
-                </div>
-
-              <!-- 菜单（改为新页面打开） -->
-              <nav class="hidden md:flex items-center space-x-6 flex-1">
-    <a href="../index.html" class="nav-link">成人钢琴课</a>
-    <a href="free-courses.html" class="nav-link">免费课程</a>
-    <a href="about.html" class="nav-link">关于老师</a>
-    <a href="contact.html" class="nav-link">联系我们</a>
-    <a href="rcm-courses.html" class="nav-link">RCM课程</a>
-    <a href="student.html" class="nav-link">学生作品</a>
-    <a href="music-share.html" class="nav-link">音乐分享</a>
-</nav>
-
-              <!-- 移动端菜单按钮 -->
-              <button id="mobile-menu-button" class="md:hidden text-dark text-2xl focus:outline-none ml-auto">
-                  <i class="fa fa-bars"></i>
-              </button>
-          </div>
-
-          <!-- 移动端菜单（同步改为新页面打开） -->
-          <div id="mobile-menu" class="md:hidden hidden pb-6">
-    <div class="flex flex-col space-y-4">
-        <a href="../index.html" class="nav-link">成人钢琴课</a>
-        <a href="free-courses.html" class="nav-link">免费课程</a>
-        <a href="about.html" class="nav-link">关于老师</a>
-        <a href="contact.html" class="nav-link">联系我们</a>
-        <a href="rcm-courses.html" class="nav-link">RCM课程</a>
-        <a href="student.html" class="nav-link">学生作品</a>
-        <a href="music-share.html" class="nav-link">音乐分享</a>
+        <div class="flex flex-wrap items-center">
+            <div class="flex items-center mr-4 flex-shrink-0">
+                <img src="../images/Lucy-piano-logo.png"
+                     alt="Lucy Piano Logo"
+                     class="h-28 w-auto rounded-full object-cover"
+                     onerror="this.src='https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d7a251f53e3b46c7b84d345e5913a1e2~tplv-a9rns2rl98-image.image?rk3s=8e244e95&rrcfp=e75484ac&x-expires=1754361615&x-signature=51Ct4q9gyy6yaaBSgNDRzjNc800%3D'; this.onerror=null;">
+            </div>
+            <!-- 桌面菜单：本页在 html/ 文件夹里，所以内页链接不加 html/，首页加 ../ -->
+            <!-- 只在 1024px 以上显示，1024px 以下一律用汉堡菜单，就不会出现两行 -->
+            <nav class="hidden md:flex items-center space-x-6 flex-1">
+                <a href="../index.html" class="nav-link">成人钢琴课</a>
+                <a href="free-courses.html" class="nav-link">免费课程</a>
+                <a href="about.html" class="nav-link">关于老师</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
+                <a href="rcm-courses.html" class="nav-link">RCM课程</a>
+                <a href="student.html" class="nav-link">学生作品</a>
+                <a href="music-share.html" class="nav-link">音乐分享</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-dark text-2xl focus:outline-none ml-auto">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单：默认藏起来，点汉堡按钮才展开；链接和桌面菜单一样，都是对的 -->
+        <div id="mobile-menu" class="md:hidden hidden pb-6">
+            <div class="flex flex-col space-y-4">
+                <a href="../index.html" class="nav-link">成人钢琴课</a>
+                <a href="free-courses.html" class="nav-link">免费课程</a>
+                <a href="about.html" class="nav-link">关于老师</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
+                <a href="rcm-courses.html" class="nav-link">RCM课程</a>
+                <a href="student.html" class="nav-link">学生作品</a>
+                <a href="music-share.html" class="nav-link">音乐分享</a>
+            </div>
+        </div>
     </div>
+</header>
+
+<!-- 底层水印：照抄首页和内页，同一张图、同一个位置、同一个透明度 -->
+<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: hidden;">
+    <img src="../images/watermark-big.png" alt="钢琴水印"
+         style="position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%); max-width: 60%; height: auto; opacity: 0.25;">
 </div>
-      </div>
-  </header>
 
-  <div style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1; /* 降低层级，确保在内容下方 */
-        pointer-events: none;
-        overflow: hidden;
-    ">
-        <!-- 主水印 -->
-        <img
-            src="../images/watermark-big.png"
-            alt="钢琴水印"
-            style="
-                position: absolute;
-                left: 50%;
-                bottom: 10%; /* 底部10%位置 */
-                transform: translateX(-50%);
-                max-width: 60%; /* 最大宽度为屏幕60% */
-                height: auto;
-                opacity: 0.25; /* 降低透明度 */
-            "
-        >
-
-
-    </div>
-
-<!-- 页面标题区 -->
-<section class="py-12 piano-key-line relative overflow-hidden">
-    <div class="container mx-auto px-4 text-center">
-        <h1 class="font-serif font-bold text-[clamp(2rem,5vw,1.5rem)] text-3xl mb-4 text-gold-dark leading-tight">
-            关于老师 <span class="text-gold-dark"> </span>
-        </h1>
-        <p class="font-bold font-serif text-indigo-600 max-w-2xl mx-auto">
-            三十年钢琴教学之路，让每一位学员与音乐温柔相遇
-        </p>
-        <!-- 装饰音符 -->
-        <div class="absolute top-1/2 left-10 transform -translate-y-1/2 text-lavender/20 text-5xl hidden md:block">♪</div>
-        <div class="absolute top-1/2 right-10 transform -translate-y-1/2 text-lavender/20 text-5xl hidden md:block">♫</div>
+<!-- 最上面：一个小一点的本地视频，跟首页一模一样的方式 -->
+<!-- 这里是本地视频文件 ../videos/StudentCover.mp4，跟首页的 cover.mp4 一样，不是 YouTube -->
+<!-- 方块比下面那几行小：下面一行 2 个，这里只有一个，居中，宽度 max-w-md -->
+<!-- 最上面这个方块：点中间的播放按钮，就在本页里放，不去 YouTube，跟首页那个视频一样 -->
+<section class="py-8 relative" style="z-index: 10;">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-6">
+            <h1 class="font-bold text-3xl text-purple leading-tight">学生作品</h1>
+        </div>
+        <!-- 最上面这个小方块的名字：写在它正上面 -->
+        <p class="text-center font-bold text-lg text-gold mb-4">全部或片段</p>
+        <div class="max-w-3xl mx-auto">
+            <div class="aspect-video overflow-hidden relative rounded-2xl">
+                <video id="student-cover-video" autoplay muted loop playsinline class="w-full h-full object-cover opacity-100">
+                    <source src="../videos/StudentCover.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+                <button id="sound-toggle" class="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center transition-all" aria-label="切换声音">
+                    <i class="fa fa-volume-off text-white text-lg"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- 学生作品方块：一行 2 个，大方块，手机上一行 1 个 -->
+<!-- 用法：每个方块里填一个真实的 YouTube 视频 ID，剩下的方块还是占位，换上真链接就能用 -->
+<!-- 视频 ID 就是 YouTube 链接里 v= 后面那一串，例如 https://www.youtube.com/watch?v=AbCdEfGh123 里的 AbCdEfGh123 -->
+<!-- 封面不用另外传，换上真实 ID 后，YouTube 会自动用那张图当封面；想用自己的封面，就把 img 的 src 换成你自己的图片 -->
+<!-- 方块里什么字都不写 -->
+<!-- 中间的播放按钮：一点它，YouTube 视频就在这个方块里直接放，不去 YouTube，跟 Phoebe 那页一样；比他那个尺寸小一点 -->
+<section class="py-8 relative" style="z-index: 10;">
+    <div class="container mx-auto px-4 max-w-7xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-<!-- 主内容区 - 仅修改个人介绍区 -->
-<main class="py-14">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <!-- 个人介绍区：仅修改此处 -->
-        <div class="mb-10">
-            <!-- 左侧纯圆形照片（增大且居中） -->
-            <div class="w-full md:w-1/3 md:float-left md:pr-6 flex justify-center pt-2">
-                <div class="w-56 h-56 rounded-full overflow-hidden shadow-lg border-4 border-white">
-                    <img
-                        src="../images/Lucy01.png"
-                        alt="Lucy老师照片"
-                        class="w-full h-full object-cover"
-                        onerror="this.src='https://picsum.photos/id/64/400/400'; this.onerror=null;"
-                    >
-                </div>
-                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gold/10 rounded-full -z-10"></div>
-                <div class="absolute -top-6 -left-6 w-20 h-20 bg-lavender/10 rounded-full -z-10"></div>
+            <!-- 方块 2 -->
+            <div class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="jzsp3FwF5JM" aria-label="在本页播放这段视频">
+                <img src="https://i.ytimg.com/vi/jzsp3FwF5JM/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-2xl ml-1"></i>
+                    </span>
+                </span>
             </div>
 
-            <!-- 右侧文字区右移（通过减少左侧占比实现） -->
-            <div class="w-full md:w-2/3 md:float-right bg-cream rounded-xl p-6 shadow-sm">
-            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark border-b border-gold/30 pb-2">
-                    遇见您的钢琴引路人
-            </h2>
-                <p class="text-black/85 leading-relaxed mt-4">
-                    我是 Lucy，加拿大皇家音乐学院RCM钢琴和乐理老师。从音乐学院的本科生到四岁的琴童，从重返钢琴的上班族到退休圆梦的阿姨，三十年的教学生涯让我有幸陪伴各式各样的学习者。跨越中西方音乐教育的经历，也让我在黑白琴键间积累了独特的教学经验和心得。
-                </p>
-                <p class="text-black/85 leading-relaxed mt-4">
-                    尤其理解成人学琴的挑战！为此，除了线下课程，我专门设计了线上系统钢琴课程。若你心底始终住着个想弹琴的自己，若你想要专业指导，又需要灵活安排——不妨从这里开始你的音乐旅程，或许这种"随时可学、有问必答"的方式，正是你需要的。
-                </p>
-                <div class="flex items-center gap-4 pt-2 h-10">
-                    <!-- 原始空容器保留 -->
-                </div>
+            <!-- 方块 3 -->
+            <div class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="YOUTUBE_VIDEO_ID_3" aria-label="在本页播放这段视频">
+                <img src="https://i.ytimg.com/vi/YOUTUBE_VIDEO_ID_3/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-2xl ml-1"></i>
+                    </span>
+                </span>
             </div>
 
-            <div class="clear-both"></div>
-        </div>
-
-
-        <!-- 课程理念区 - 移除hover效果 -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm mb-16 relative music-ornament">
-            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-goldDark mb-6 text-center">
-                专为成人打造的钢琴自由之路
-            </h2>
-
-            <p class="text-blue/85 leading-relaxed mb-8 text-center max-w-3xl mx-auto">
-                我深知成人学琴的独特挑战：指尖的僵硬、识谱的卡顿、练琴时间的碎片化……这些细碎的阻碍，恰恰成了我打磨课程的初心
-            </p>
-
-            <!-- 三大核心优势 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 优势1 -->
-                <div class="bg-lavenderLight p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-lavender/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-laptop text-lavender"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">线上专属课程体系</h3>
-                    <p class="text-black text-sm">将扎实基本功与灵动音乐性编织成网，让每一分钟练习都有方向，碎片时间也能高效利用。</p>
-                </div>
-
-                <!-- 优势2 -->
-                <div class="bg-babyBlueLight p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-babyBlue/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-user text-babyBlue"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">1对1精准指导</h3>
-                    <p class="text-black text-sm">从基础乐理、手指机能训练，从演奏技巧到视频作业细致批改，及时反馈优化。我会陪你稳稳走过每一步，全程陪伴成长。</p>
-                </div>
-
-                <!-- 优势3 -->
-                <div class="bg-gold/5 p-6 rounded-xl">
-                    <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-star text-goldDark"></i>
-                    </div>
-                    <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">三大核心突破</h3>
-                    <p class="text-black text-sm">重塑手指机能、加速视奏能力、培养音乐性，从第一节课起种下乐句呼吸的意识。</p>
-                </div>
+            <!-- 方块 4 -->
+            <div class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="YOUTUBE_VIDEO_ID_4" aria-label="在本页播放这段视频">
+                <img src="https://i.ytimg.com/vi/YOUTUBE_VIDEO_ID_4/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-2xl ml-1"></i>
+                    </span>
+                </span>
             </div>
-        </div>
 
-        <!-- 学员收获区 - 移除hover效果 -->
-        <div class="mb-16">
-            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark mb-6 text-center">
-                您将收获的不只是技巧
-            </h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="border border-gold/20 rounded-xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mr-3">
-                            <i class="fa fa-clock-o text-deepBlue"></i>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">高效进步</h3>
-                    </div>
-                    <p class="text-black text-sm">即使每天只有二三十分钟，也能在系统化节奏里看见持续进步，告别无效练习。</p>
-                </div>
-
-                <div class="border border-babyBlue/20 rounded-xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 bg-babyBlue/10 rounded-full flex items-center justify-center mr-3">
-                            <i class="fa fa-music text-deepBlue"></i>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">理解音乐</h3>
-                    </div>
-                    <p class="text-black text-sm">摆脱「照谱硬弹」的困境，真正读懂音乐结构与情感表达，让旋律走进心里。</p>
-                </div>
-
-                <div class="border border-lavender/20 rounded-xl p-6">
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 bg-lavender/10 rounded-full flex items-center justify-center mr-3">
-                            <i class="fa fa-heart text-deepBlue"></i>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-indigo-600 mb-3">热爱绽放</h3>
-                    </div>
-                    <p class="text-black text-sm">在几个月内流畅演奏自己喜爱的曲目，感受音乐带来的成就感与治愈力。让指尖流淌的不仅是音符，更是藏了许久的热爱。</p>
-                </div>
+            <!-- 方块 5 -->
+            <div class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="YOUTUBE_VIDEO_ID_5" aria-label="在本页播放这段视频">
+                <img src="https://i.ytimg.com/vi/YOUTUBE_VIDEO_ID_5/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-2xl ml-1"></i>
+                    </span>
+                </span>
             </div>
-        </div>
 
-        <!-- 教学理念与初心 -->
-        <div class="bg-lavenderLight/30 rounded-2xl p-8 md:p-10 relative overflow-hidden">
-            <!-- 背景装饰 -->
-            <div class="absolute top-0 right-0 w-40 h-40 bg-lavender/10 rounded-full -mr-20 -mt-20"></div>
-            <div class="absolute bottom-0 left-0 w-60 h-60 bg-babyBlue/10 rounded-full -ml-30 -mb-30"></div>
-
-            <h2 class="font-serif font-bold text-[clamp(1.5rem,3vw,1.5rem)] text-gold-dark text-center mb-6 text-center relative z-10">
-                教学是一场与热爱同行的修行
-            </h2>
-
-            <!-- 教学理念与初心 - 统一字体样式 -->
-          <div class="space-y-6 relative z-10">
-              <p class="font-serif font-bold text-indigo-600 leading-relaxed text-center">
-                  钢琴于我，早已不是冰冷的乐器，而是流淌在生命里的温暖底色。每当指尖轻触琴键，旋律便如月光般漫过心湖，在喧嚣中沉淀出澄澈的平静，也在迷茫时唤醒心底的力量。
-              </p>
-              <p class="font-serif font-bold text-indigo-600 leading-relaxed text-center">
-                  而比这更动人的，是见证每一位学员与音乐的相遇——从指尖的生涩试探到旋律的自然流淌，从眼底的迟疑困惑到眼中跃动的光芒与喜悦。你们每一步成长的印记，都让我愈发坚信教学的意义。
-              </p>
-                <p class="font-serif  font-bold text-indigo-600 leading-relaxed text-center">
-                  学琴从不必用时间的长度衡量热爱的深度。哪怕每天只有片刻的专注，只要循着温柔而系统的指引扎根练习，钢琴的基础便会如草木般悄然生长，那些藏在音符里的美好与希望，会让平凡的日子也泛起诗意的涟漪。
-              </p>
-          </div>
-
+            <!-- 方块 6 -->
+            <div class="youtube-card aspect-video relative bg-gray-100 block overflow-hidden rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-video-id="YOUTUBE_VIDEO_ID_6" aria-label="在本页播放这段视频">
+                <img src="https://i.ytimg.com/vi/YOUTUBE_VIDEO_ID_6/hqdefault.jpg" alt="" class="w-full h-full object-cover">
+                <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <span class="play-button w-16 h-16 rounded-full bg-purpleAccent/90 hover:bg-purple flex items-center justify-center shadow-lg transition-all">
+                        <i class="fa fa-play text-white text-2xl ml-1"></i>
+                    </span>
+                </span>
+            </div>
 
         </div>
     </div>
-</main>
+</section>
 
-<!-- 页脚 -->
-<footer class="bg-white py-10 border-t border-gray-200">
+<!-- 页脚：照抄首页和内页，邮箱、微信、YouTube、版权一模一样 -->
+<footer class="bg-white py-10 border-t border-gray-200 relative" style="z-index: 10;">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-8">
             <div class="flex items-center">
@@ -339,26 +199,61 @@
             </div>
             <div class="flex items-center">
                 <i class="fa fa-weixin text-purple mr-3 text-xl"></i>
-                <span>WECHAT：Lucy-Piano </span>
+                <span>WECHAT：Lucy-Piano</span>
             </div>
             <div class="flex items-center">
                 <i class="fa fa-youtube-play text-purple mr-3 text-xl"></i>
                 <a href="#" class="text-purple hover:underline">YOUTUBE CHANNEL</a>
             </div>
         </div>
-
         <div class="text-center text-gray-600">
             <p>LUCY PIANO © All rights reserved.</p>
         </div>
     </div>
 </footer>
 
-<!-- JavaScript -->
 <script>
-    // 移动端菜单切换
+    // 最上面那个视频的声音开关：跟首页一模一样
+    window.addEventListener('load', function() {
+        const video = document.getElementById('student-cover-video');
+        const toggleBtn = document.getElementById('sound-toggle');
+        if (!video || !toggleBtn) return;
+        let isMuted = true;
+        video.play().catch(() => {
+            video.addEventListener('click', () => video.play(), { once: true });
+        });
+        toggleBtn.addEventListener('click', function() {
+            isMuted = !isMuted;
+            if (isMuted) {
+                toggleBtn.innerHTML = '<i class="fa fa-volume-off text-white text-lg"></i>';
+                video.muted = true;
+                video.volume = 0;
+            } else {
+                toggleBtn.innerHTML = '<i class="fa fa-volume-up text-white text-lg"></i>';
+                video.muted = false;
+                video.volume = 1;
+            }
+        });
+    });
+
+    // 下面 5 个方块：点一下，YouTube 视频就在这个方块里直接放，不去 YouTube（跟 Phoebe 那页一样）
+    document.querySelectorAll('.grid .youtube-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            const videoId = card.getAttribute('data-video-id');
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            iframe.title = 'YouTube video player';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.className = 'w-full h-full absolute inset-0';
+            card.innerHTML = '';
+            card.appendChild(iframe);
+        });
+    });
+
+    // 移动端菜单切换：点汉堡展开，再点收起；默认是藏起来的，不会和桌面菜单一起出现
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-
     mobileMenuButton.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
         const icon = mobileMenuButton.querySelector('i');
@@ -370,29 +265,6 @@
             icon.classList.add('fa-times');
         }
     });
-
-    // 页面滚动动画（保留基础动画，移除hover相关）
-    document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('section > div, main > div > div');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-4');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => {
-            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
-            observer.observe(section);
-        });
-    });
 </script>
-
-<!-- 底部装饰音符 -->
-<div class="fixed bottom-8 left-8 text-lavender/20 text-4xl pointer-events-none hidden md:block">♪</div>
-<div class="fixed bottom-16 right-10 text-gold/20 text-3xl pointer-events-none hidden md:block">♫</div>
-
 </body>
 </html>
